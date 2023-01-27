@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+
+
+
+<style>
+    #form1{
+        width: 400px;
+        margin: 100px auto;
+        border: 2px solid black;
+        padding: 15px;
+        border-radius: 20px;
+    }
+    #form1 label{
+        display: inline-block;
+        width: 150px;
+        margin-bottom: 8px;
+    }
+    #form1 #email, #pass{
+        width: 220px;
+    }
+    
+    #form1 #submit{
+        margin-left: 43%;
+        padding: 5px 15px;
+        border-radius: 10px;
+       
+    }
+</style>
+
+</head>
+<body>
+    <form id="form1">
+        <label for="email">Email :</label>
+        <input type="email" name="email" id="email">
+        <span  id="emailerror"></span>
+        <label for="pass">Password :</label>
+        <input type="password" name="pass" id="pass">
+        <span id="passerror"></span>
+        <label for="mobile">Mobile Number :</label>
+        <input type="number" name="mobile" id="mobile">
+        <span id="numerror"></span>
+        <input onclick="emailCheck()" type="button" value="Submit" id="submit">
+    </form>
+
+    <script>
+        class emailClass {
+            constructor(e, p,n) {
+                this.e1 = e;
+                this.p2 = p;
+                this.n1 = n;
+            }
+            eclassFunction() {
+                let rex = /\S+@\S+\.\S+$/;
+                let result = rex.test(this.e1);
+                let rexp= /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/ ;
+                let resultP = rexp.test(this.p2);
+
+                if (result) {
+                    alert("result error");
+                    document.getElementById("emailerror").innerHTML =`<p style="color: green;">Your email is valid </p>`
+                } else {
+                    // alert("Email Is Not valid");
+                    document.getElementById("emailerror").innerHTML =`<p style="color: brown;">Invalid;Exm:username@domain.extension </p>`
+                }
+                if (resultP) {
+                    document.getElementById("passerror").innerHTML =`<p style="color: green;">Password Strong And Good</p>`
+                } else {
+                    document.getElementById("passerror").innerHTML =`<p style="color: brown;">Must contain at least  one number and <br> one uppercase and lowercase letter<br> and at least 8 or more characters </p>`
+                    
+                }
+                let rexn = /(01)([0-9]{9})$/;
+                let resultn = rexn.test(this.n1);
+                if (resultn) {
+                    document.getElementById("numerror").innerHTML =`<p style="color: green;">Mobile Number Correct</p>`
+                } else {
+                    document.getElementById("numerror").innerHTML =`<p style="color: red;">Please Input Like 01512345678 this number;</p>`
+
+                }
+
+            }
+
+        }
+        function emailCheck() {
+            let gete = document.getElementById("email").value;
+            let getp = document.getElementById("pass").value;
+            let getn = document.getElementById("mobile").value;
+            let obj = new emailClass(gete,getp,getn);
+            obj.eclassFunction();
+        }
+
+    </script>
+
+
+<div class="container-xxl">
+
+    <div class="offcanvas offcanvas-start" id="demo">
+        <div class="offcanvas-header">
+            <h1 class="offcanvas-title">Registration Form</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+
+            <div class="modal-body">
+                <div class="container mt-3">
+                    <form action="/action_page.php">
+                        <div class="mb-3 mt-3">
+                            <label for="name">User Name:</label>
+                            <input type="text" class="form-control" id="name" placeholder="Your Name"
+                                name="name">
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email"
+                                name="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="pwd">Password:</label>
+                            <input type="password" class="form-control" id="pwd"
+                                placeholder="Enter password" name="pswd">
+                        </div>
+                        <div class="mb-3">
+                            <label for="rpwd">Re-type Password:</label>
+                            <input type="password" class="form-control" id="rpwd"
+                                placeholder="Re-type password" name="rpswd">
+                        </div>
+                        <div class="form-check mb-3">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="remember">
+                                Remember me
+                            </label>
+                        </div>
+                        <button type="button" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="container-fluid mt-3">
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+            Registration Form
+        </button>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
